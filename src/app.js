@@ -9,20 +9,49 @@ function unpackSamples(sample){
 }
   
 d3.json('src/samples.json').then((data)=>{
-    var allSamples = data.samples;
+     
+        
+    // Initialize
+     function initChart(){
+        var id = d3.select('#selector').property('value'); 
+        var result = data.samples.filter(data => data.id == id)[0];
+        var otu_ids = result.otu_ids;
+        var sampleValues = result.sample_values;
+        var labels = result.otu_labels;
+
+        console.log(result.sample_values);
+
+        // Define trace
+        var trace1 = {
+            labels: otu_ids,
+            x:  sampleValues.slice(0,10).sort((x,y)=> x-y), // Find out how to sort and maintain data accuracy
+            text: labels,
+            type:'bar'
+        
+        }
+
+        // Plot 
+        var bars = [trace1];
+        Plotly.newPlot('barChart',bars);
+    }
+  
+        //   console.log(data.names)
+        var dropdown = d3.select('#selector');
+          data.names.forEach((id)=>{
+            
+            dropdown.append('option').text(id).property('value',id);
+          });
+
+          dropdown.on('change',()=>{
+              initChart();
+          });
+    
+          
+          initChart();
 
 
-    var data1 = [{
-        x: allSamples[0].otu_ids,
-        y: allSamples[0].sample_values,
-        type: 'bar'
-        }]
+        
 
-        Plotly.newPlot('myDiv',data1);
-    // console.log(data.samples);
-    allSamples.forEach((sample)=>{
-        // console.log(sample)
-        // console.log(sample.sample_values)
-    })
-    console.log(allSamples[0])
+        
+
 });
