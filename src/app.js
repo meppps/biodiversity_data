@@ -1,3 +1,5 @@
+
+// App.js
 function unpack(rows, index) {
     return rows.map(function(row) {
       return row[index];
@@ -13,6 +15,8 @@ d3.json('src/samples.json').then((data)=>{
         
     // Initialize
      function initChart(){
+
+        // Bar chart
         var id = d3.select('#selector').property('value'); 
         var result = data.samples.filter(data => data.id == id)[0];
         var otu_ids = result.otu_ids;
@@ -33,6 +37,28 @@ d3.json('src/samples.json').then((data)=>{
         // Plot 
         var bars = [trace1];
         Plotly.newPlot('barChart',bars);
+
+
+
+        // Bubble Chart
+
+            var trace2 = {
+                x: otu_ids,
+                y: sampleValues,
+                text: labels,
+                mode: 'markers',
+                marker:{
+                    size: sampleValues,
+                    color: otu_ids
+                },
+                
+            }
+        
+        var bubbles = [trace2];
+
+        console.log(otu_ids)
+
+        Plotly.newPlot('bubbleChart',bubbles);
     }
   
         //   console.log(data.names)
@@ -49,9 +75,5 @@ d3.json('src/samples.json').then((data)=>{
           
           initChart();
 
-
-        
-
-        
 
 });
