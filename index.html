@@ -1,27 +1,80 @@
-    <!DOCTYPE html>
-    <html lang="en">
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/5.15.0/d3.min.js"></script>
-        <title>Biodiversity</title>
-    </head>
-    <body>
-        
-        <select name="select" id="selector">
-            <option value="940">940</option>
-        </select>
-        <div id="myDiv">
+<!DOCTYPE html>
+<html lang="en">
 
-            <div id="barChart"></div>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/5.15.0/d3.min.js"></script>
+    <!-- <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootswatch/4.4.1/minty/bootstrap.min.css"> -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootswatch/4.4.1/solar/bootstrap.min.css">
+    <title>Biodiversity</title>
+    <style>
+        #selector {
+            height: 40px;
+        }
 
-            <div id="bubbleChart"></div>
+        .navbar {
+            height: 100px !important;
+        }
 
+        .navbar>h2 {
+            color: #fff !important;
+            font-weight: 600;
+        }
+
+    </style>
+</head>
+
+<body>
+    <nav class="navbar navbar-dark bg-primary mx-auto">
+        <h2>Belly Button Biodiversity Dashboard</h2>
+    </nav>
+
+
+    <div id="myDiv">
+
+
+        <div class="row">
+
+            <div class="col-md-6">
+                <div class="card mx-auto" style="width: 300px">
+                    <div class="card">
+                        <div class="card-body text-center bg-success text-light">
+                            <h4 class="card-title">Demographic Info</h4>
+                            <p class="card-text mx-auto" style="width:100px;"></p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card mx-auto" style="width: 300px">
+                    <div class="card">
+                        <div class="card-body text-center bg-success text-light">
+                            <h4 class="card-title">Select Test Subject #</h4>
+                            <p class="card-text mx-auto" style="width:100px;">
+                                <select name="select" id="selector">
+                                    <option value="940">940</option>
+                                </select>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="col-md-6">
+                <div id="barChart"></div>
+            </div>
         </div>
 
 
-        
-    </body>
-    <script src="src/app.js"></script>
-    </html>
+        <div class="row">
+            <div class="col-md-12">
+                <div id="bubbleChart"></div>
+            </div>
+        </div>
+
+</body>
+<script src="src/app.js"></script>
+
+</html>
